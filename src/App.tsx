@@ -5,8 +5,11 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import NewComponent from "./components/NewComponent";
 import CarsTable from "./components/CarsTable";
+import Button from "./components/Button";
 
 function App() {
+
+    // Map
     const students = [
         {id: 1, name: "James", age: 8},
         {id: 2, name: "Robert", age: 18},
@@ -26,21 +29,41 @@ function App() {
         {manufacturer: 'Audi', model: 'rs6'}
     ];
 
+    // Button
+    const button1Foo = () => {
+        console.log("Hello, I'm Vasya")
+    }
+    const button2Foo = () => {
+        console.log("Hello, I'm Ivan")
+    }
+    const button3Foo = () => {
+        console.log("I'm a stupid button")
+    }
+
+
+
+
+
     return (
         <div className="App">
             <div className='container'>
 
-                <h2>Nested components</h2>
+                <h2>1. Nested components</h2>
                 <Header title='New Header'/>
                 <Body titleForBody='New Body'/>
                 <Footer titleForFooter={'New Footer'}/>
 
 
-                <h2>Map</h2>
+                <h2>2. Map</h2>
                 -- List of students --
                 <NewComponent students={students}/>
                 -- Table of cars --
                 <CarsTable topCars={topCars}/>
+
+                <h2>3. Button</h2>
+                <Button buttonText='My youtube channel 1' callback={button1Foo}/>
+                <Button buttonText='My youtube channel 2' callback={button2Foo}/>
+                <Button buttonText='Stupid button' callback={button3Foo}/>
 
             </div>
 
