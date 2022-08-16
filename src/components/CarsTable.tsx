@@ -21,16 +21,18 @@ const CarsTable = (props: CarsTablePropsType) => {
     })
 
 
-
-
     return (
         <table>
+            <thead>
             <tr>
                 <th>№</th>
                 <th>Manufacturer</th>
                 <th>Model</th>
             </tr>
+            </thead>
+            <tbody>
             {carsList}
+            </tbody>
         </table>
     );
 };
