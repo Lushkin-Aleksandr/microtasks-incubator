@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "./Button";
+import Button from "../Button";
 
 type MoneyItemType = {
     banknots: string, value: number, number: string,
