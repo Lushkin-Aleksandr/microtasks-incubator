@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -40,6 +40,15 @@ function App() {
         console.log("I'm a stupid button")
     }
 
+    // Hook useState
+    let [a, setA] = useState(1);
+    const increment = () => {
+        setA(++a);
+    }
+    const setZero = () => {
+        setA(0);
+    }
+
 
 
 
@@ -64,6 +73,12 @@ function App() {
                 <Button buttonText='My youtube channel 1' callback={button1Foo}/>
                 <Button buttonText='My youtube channel 2' callback={button2Foo}/>
                 <Button buttonText='Stupid button' callback={button3Foo}/>
+
+                <h2>4. Hook useState</h2>
+                <h3>{a}</h3>
+                <Button buttonText={'plus 1'} callback={increment}/>
+                <Button buttonText={'set 0'} callback={setZero}/>
+
 
             </div>
 
