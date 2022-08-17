@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import NewComponent from "./components/NewComponent";
 import CarsTable from "./components/CarsTable";
 import Button from "./components/Button";
+import FilterTask from "./components/FilterTask";
 
 function App() {
 
@@ -30,14 +31,8 @@ function App() {
     ];
 
     // Button
-    const button1Foo = () => {
-        console.log("Hello, I'm Vasya")
-    }
-    const button2Foo = () => {
-        console.log("Hello, I'm Ivan")
-    }
-    const button3Foo = () => {
-        console.log("I'm a stupid button")
+    const buttonFoo = (name: string) => {
+        console.log(`I'm ${name}`)
     }
 
     // Hook useState
@@ -49,7 +44,30 @@ function App() {
         setA(0);
     }
 
+    // Filter
+    const [money, setMoney] = useState([
+        { banknots: 'Dollars', value: 100, number: ' a1234567890' },
+        { banknots: 'Dollars', value: 50, number: ' z1234567890' },
+        { banknots: 'RUBLS', value: 100, number: ' w1234567890' },
+        { banknots: 'Dollars', value: 100, number: ' e1234567890' },
+        { banknots: 'Dollars', value: 50, number: ' c1234567890' },
+        { banknots: 'RUBLS', value: 100, number: ' r1234567890' },
+        { banknots: 'Dollars', value: 50, number: ' x1234567890' },
+        { banknots: 'RUBLS', value: 50, number: ' v1234567890' },
+    ])
 
+    const [currentMoney, setCurrentMoney] = useState(money);
+
+    const filterMoney = (name: string) => {
+        const filteredMoney = money.filter(item => {
+            if (name === 'all') return true;
+
+            return item.banknots === name;
+
+        });
+        setCurrentMoney(filteredMoney);
+
+    }
 
 
 
@@ -70,14 +88,19 @@ function App() {
                 <CarsTable topCars={topCars}/>
 
                 <h2>3. Button</h2>
-                <Button buttonText='My youtube channel 1' callback={button1Foo}/>
-                <Button buttonText='My youtube channel 2' callback={button2Foo}/>
-                <Button buttonText='Stupid button' callback={button3Foo}/>
+                <Button buttonText='My youtube channel 1' callback={() => buttonFoo('Vasya')}/>
+                <Button buttonText='My youtube channel 2' callback={() => buttonFoo('Ivan')}/>
+                <Button buttonText='Stupid button' callback={() => buttonFoo('a Stupid Button')}/>
 
                 <h2>4. Hook useState</h2>
                 <h3>{a}</h3>
                 <Button buttonText={'plus 1'} callback={increment}/>
                 <Button buttonText={'set 0'} callback={setZero}/>
+
+                <h2>5. Filter</h2>
+                <FilterTask currentMoney={currentMoney} callback={filterMoney} />
+
+
 
 
             </div>
