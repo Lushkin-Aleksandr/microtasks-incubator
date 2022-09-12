@@ -101,12 +101,24 @@ function App() {
 
 
     const todolistsElements = todolists.map(t => {
+
+        const getFilteredTasks = () => {
+            let tasksForTodolist = tasks[t.id];
+            if (t.filter === "active") {
+                tasksForTodolist = tasks[t.id].filter(t => !t.isDone);
+            }
+            if (t.filter === "completed") {
+                tasksForTodolist = tasks[t.id].filter(t => t.isDone);
+            }
+            return tasksForTodolist;
+        }
+
         return (
             <Todolist
                 key={t.id}
                 todolistId={t.id}
                 title={t.title}
-                tasks={getFilteredTasks(tasks[t.id], t.filter)}
+                tasks={getFilteredTasks()}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
