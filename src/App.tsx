@@ -82,18 +82,6 @@ function App() {
     }
 
 
-    const getFilteredTasks = (tasks: TaskType[], filter: FilterValuesType) => {
-        let tasksForTodolist = tasks;
-        if (filter === "active") {
-            tasksForTodolist = tasks.filter(t => !t.isDone);
-        }
-        if (filter === "completed") {
-            tasksForTodolist = tasks.filter(t => t.isDone);
-        }
-        return tasksForTodolist;
-    }
-
-
     function changeFilter(todolistId: string, value: FilterValuesType) {
         setTodolists(todolists.map(t => t.id === todolistId ? {...t, filter: value} : t));
     }
