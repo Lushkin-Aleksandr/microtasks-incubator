@@ -1,31 +1,24 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
+.App {
+  padding: 30px;
+  display: flex;
 }
 
-html, body, #root, .App, .container {
-    height: 100%;
+.App > div {
+  margin-right: 50px;
 }
 
-body {
-    background-color: #8de08b;
+.error {
+  border: red 1px solid;
 }
 
-.container {
-    max-width: 1200px;
-    padding: 0 10px;
-    margin: 0 auto;
-    background-color: #3cc236;
+.error-message {
+  color: red;
 }
 
-table {
-    border-collapse: collapse;
+.active-filter {
+  background-color: aquamarine;
 }
 
-table, th, td {
-    border: 1px solid black;
-    text-align: center}
-
-th, td {
-    padding: 5px;
+.is-done {
+  opacity: 0.5;
 }
