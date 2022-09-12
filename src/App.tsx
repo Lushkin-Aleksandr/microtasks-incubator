@@ -5,10 +5,6 @@ import {v1} from 'uuid';
 
 export type FilterValuesType = "all" | "active" | "completed";
 
-export type FilterType = {
-    [id: string]: FilterValuesType
-}
-
 export type TodolistsType = {
     id: string
     title: string
@@ -64,11 +60,6 @@ function App() {
         ]
     });
 
-    const [filter, setFilter] = useState<FilterType>({
-        [todolistID1]: 'all',
-        [todolistID2]: 'all',
-    })
-
 
     function removeTask(todolistId: string, taskId: string) {
         let filteredTasks = tasks[todolistId].filter(t => t.id !== taskId);
@@ -91,20 +82,20 @@ function App() {
     }
 
 
-    const getFilteredTasks = (todolistId: string) => {
-        let tasksForTodolist = tasks[todolistId];
-        if (filter[todolistId] === "active") {
-            tasksForTodolist = tasks[todolistId].filter(t => !t.isDone);
+    const getFilteredTasks = (tasks: TaskType[], filter: FilterValuesType) => {
+        let tasksForTodolist = tasks;
+        if (filter === "active") {
+            tasksForTodolist = tasks.filter(t => !t.isDone);
         }
-        if (filter[todolistId] === "completed") {
-            tasksForTodolist = tasks[todolistId].filter(t => t.isDone);
+        if (filter === "completed") {
+            tasksForTodolist = tasks.filter(t => t.isDone);
         }
         return tasksForTodolist;
     }
 
 
     function changeFilter(todolistId: string, value: FilterValuesType) {
-        setFilter({...filter, [todolistId]: value});
+        setTodolists(todolists.map(t => t.id === todolistId ? {...t, filter: value} : t));
     }
 
 
@@ -115,12 +106,12 @@ function App() {
                 key={t.id}
                 todolistId={t.id}
                 title={t.title}
-                tasks={getFilteredTasks(t.id)}
+                tasks={getFilteredTasks(tasks[t.id], t.filter)}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
                 changeTaskStatus={changeStatus}
-                filter={filter[t.id]}/>
+                filter={t.filter}/>
         )
     })
 
